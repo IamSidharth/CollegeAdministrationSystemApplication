@@ -1,0 +1,1085 @@
+
+SQL> create table Student(
+    ID int,
+    fname varchar(50),
+    lname varchar(50),
+    dob date,
+    sex char(10),
+    contact_no varchar(20),
+    email varchar(20),
+    Father_name varchar(50),
+   Parent_contact varchar(20));
+
+
+
+ create table faculty(
+   id int,
+   dob date,
+   contact_no varchar(20),
+   sex char(10),
+   address varchar(50),
+   dept varchar(20),
+   primary key(id));
+
+Table created.
+
+
+SQL> alter table faculty add fname varchar(50);
+
+Table altered.
+
+SQL> alter table faculty add lname varchar(50);
+
+Table altered
+
+SQL> alter table student add address varchar(20);
+
+
+
+ alter table student add primary key(id);
+
+
+SQL> create table department(
+  2  id int,
+  3  name varchar(20),
+  4  building varchar(20),
+  5  intake_limit int,
+  6  placementpercent int,
+  7  primary key(id));
+
+Table created.
+.
+
+ create table course(
+   id int,
+   name varchar(20),
+   no_of_credits int,
+   primary key(id));
+
+Table created.
+
+SQL> alter table course add  d_id int;
+
+Table altered.
+
+alter table course add foreign key (d_id) references department(id);
+
+Table altered.
+
+ create table enroll(
+   st_id int,
+   c_id int,
+   attendence int,
+   s1marks int,
+   s2marks int,
+   imarks int,
+   emarks int,
+   foreign key(st_id) references student(id),
+   foreign key(c_id) references course(id));
+
+Table created.
+
+SQL> create table teaches ( f_id int,
+  2  c_id int,
+  3  foreign key(c_id) references course(id),
+  4  foreign key(f_id) references faculty(id));
+
+Table created.
+
+SQL> create table achivements(st_id int ,
+  2  id int,
+  3  name varchar(20),
+  4  primary key(id),
+  5  foreign key(st_id) references student(id));
+
+Table created.
+
+SQL> create table notification(n_id int,
+  2  name int,
+  3  timestamp date,
+  4  primary key(n_id));
+
+Table created.
+
+
+
+ insert into student values(1236,'amandeep','saluja','1-jan-1994','male','999624448','lasanya','996006626','452,9th block,mit','as@gmail.com');
+
+
+ insert into student values(1237,'shubhi','rayar','22-mar-1994','female','988624448','popi','993306626','444,4th block,mit','sr@gmail.com');
+
+
+
+ insert into student values(1238,'varnika','singh','2-nov-1994','female','988624488','karan','933066200','422,4th block,mit','vs@gmail.com');
+
+ insert into student values(1239,'avni','kumar','2-jan-1995','female','98161188','karanjeet','933011200','222,3th block,mit','ak@gmail.com');
+
+
+insert into student values(1240,'jason','statthom','2-apr-1991','male','81611828','matt','993211200','222,11th block,mit','js@gmail.com');
+
+
+
+SQL> insert into student values(1232,'dheeraj','ch','23-Dec-1992','male','9234877890','srinivas','9297629292','207,emerald,manipal','dheer@gmail.com');
+
+1 row created.
+
+SQL> insert into student values(1233,'sai','kiran','23-Mar-1992','male','8296539678','sanjay','9000200666','211,14th block,mit','sk@gmail.com');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into student values(1234,'jay','mahajan','2-Mar-1994','male','829612678','anil','9366006626','111,13th block,mit','jm@gmail.com');
+
+1 row created.
+
+SQL> insert into student values(1235,'kaustubh','garg','12-jan-1994','male','929614448','ritul','886006626','450,9th block,mit','kg@gmail.com');
+
+1 row created.
+
+
+SQL> insert into faculty values(111,'1-jan-1882','8817330872','male','house11 facultybulding1','ict','robert','clive');
+
+1 row created.
+
+SQL> insert into faculty values(112,'11-jan-1881','9817330873','male','house12 facultybulding1','cs','robert','dinero');
+
+1 row created.
+
+SQL> insert into faculty values(113,'13-mar-1881','9817332274','male','house22 facultybulding1','cs','michel','scott');
+
+1 row created.
+
+SQL> insert into faculty values(114,'22-mar-1884','9817331174','male','house32 facultybulding1','mech','harley','davidson');
+
+1 row created.
+
+SQL> insert into faculty values(115,'2-apr-1881','8817331174','male','house33 facultybulding1','mech','jason','markonikof');
+
+1 row created.
+SQL> insert into faculty values(116,'2-feb-1879','8877731179','female','house1 facultybulding1','civil','lara','lara');
+
+1 row created.
+
+SQL> insert into faculty values(117,'8-sep-1879','8877731122','male','house2 facultybulding1','civil','tom','brady');
+
+1 row created.
+
+SQL> insert into faculty values(118,'8-jan-1877','8877731452','male','house3 facultybulding1','ict','james','bond');
+
+1 row created.
+
+SQL> insert into faculty values(119,'21-may-1883','8888831452','female','house11 facultybulding2','electrical','kaley','coco');
+
+1 row created.
+
+SQL> insert into faculty values(120,'2-may-1884','9992299992','male','house1 facultybulding2','chemical','roger','fredder');
+
+1 row created.
+
+
+
+SQL> insert into department values(1,'ICT','bulding1',10,90);
+
+1 row created.
+
+SQL> insert into department values(2,'cs','bulding1',10,100);
+
+1 row created.
+
+SQL> insert into department values(3,'mech','bulding2',10,100);
+
+1 row created.
+
+SQL> insert into department values(4,'civil','bulding2',10,100);
+
+1 row created.
+
+SQL> insert into department values(5,'electrical','bulding3',10,100);
+
+1 row created.
+
+SQL> insert into department values(6,'chemical','bulding3',10,100);
+
+1 row created.
+
+
+SQL*Plus: Release 11.2.0.2.0 Production on Wed Nov 7 17:24:27 2018
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect;
+Enter user-name: system
+Enter password:
+Connected.
+SQL> select * from faculty;
+
+no rows selected
+
+SQL> insert into(111,'1-jan-1882','8817330872','male','house11 facultybulding1','ict','robert','clive');
+insert into(111,'1-jan-1882','8817330872','male','house11 facultybulding1','ict','robert','clive')
+            *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into faculty values(111,'1-jan-1882','8817330872','male','house11 facultybulding1','ict','robert','clive');
+
+1 row created.
+
+SQL> insert into faculty values(112,'11-jan-1881','9817330873','male','house12 facultybulding1','cs','robert','dinero');
+
+1 row created.
+
+SQL> insert into faculty values(113,'13-mar-1881','9817332274','male','house22 facultybulding1','cs','michel','scott');
+
+1 row created.
+
+SQL> insert into faculty values(114,'22-mar-1884','9817331174','male','house32 facultybulding1','mech','harley','davidson');
+
+1 row created.
+
+SQL> insert into faculty values(115,'2-apr-1881','8817331174','male','house33 facultybulding1','mech','jason','markonikof');
+
+1 row created.
+
+SQL> insert into faculty values(116,'2-feb-1879','8877731179','female','house1 facultybulding1','civil','lara','lara');
+
+1 row created.
+
+SQL> insert into faculty values(117,'8-sep-1879','8877731122','male','house2 facultybulding1','civil','tom','brady');
+
+1 row created.
+
+SQL> insert into faculty values(118,'8-jan-1877','8877731452','male','house3 facultybulding1','ict','james','bond');
+
+1 row created.
+
+SQL> insert into faculty values(119,'21-may-1883','8888831452','female','house11 facultybulding2','electrical','kaley','coco');
+
+1 row created.
+
+SQL> insert into faculty values(120,'2-may-1884','9992299992','male','house1 facultybulding2','chemical','roger','fredder');
+
+1 row created.
+
+SQL> insert into department values(1,'ICT','nulding1',150,90);
+
+1 row created.
+
+SQL> insert into department values(2,'cs','bulding1',10,100);
+
+1 row created.
+
+SQL> delete * from department where id=1;
+delete * from department where id=1
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> delete from department where id=1;
+
+1 row deleted.
+
+SQL> select * from department;
+
+        ID NAME                 BUILDING             INTAKE_LIMIT
+---------- -------------------- -------------------- ------------
+PLACEMENTPERCENT
+----------------
+         2 cs                   bulding1                       10
+             100
+
+
+SQL> insert into department values(1,'ICT','bulding1',10,90);
+
+1 row created.
+
+SQL> insert into department values(3,'mech','bulding2',10,100);
+
+1 row created.
+
+SQL> insert into department values(4,'civil','bulding2',10,100);
+
+1 row created.
+
+SQL> insert into department values(5,'electrical','bulding3',10,100);
+
+1 row created.
+
+SQL> insert into department values(6,'chemical','bulding3',10,100);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into course(1,'oop',4);
+insert into course(1,'oop',4)
+                   *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into course values(101,'oop',4);
+
+1 row created.
+
+SQL> insert into course values(10,'faad',4);
+
+1 row created.
+
+SQL> delete from course;
+
+2 rows deleted.
+
+SQL> alter table course add column d_id int;
+alter table course add column d_id int
+                       *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+ alter table course add  d_id int;
+
+
+SQL> alter table course add foreign key (d_id) referneces department(id);
+alter table course add foreign key (d_id) referneces department(id)
+                                          *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> alter table course add foreign key (d_id) refereneces department(id);
+alter table course add foreign key (d_id) refereneces department(id)
+                                          *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> alter table course add foreign key (d_id) referenecs department(id);
+alter table course add foreign key (d_id) referenecs department(id)
+                                          *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> alter table course add foreign key (d_id) references department(id);
+
+Table altered.
+
+SQL>  insert into course values(10,'oop',4);
+ insert into course values(10,'oop',4)
+             *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> SQL> alter table course add  d_id int;
+SP2-0734: unknown command beginning "SQL> alter..." - rest of line ignored.
+SQL>
+SQL>  insert into course values(101,'oop',4,1);
+
+1 row created.
+
+SQL>  insert into course values(102,'faad',4,1);
+
+1 row created.
+
+SQL>  insert into course values(103,'se',4,2);
+
+1 row created.
+
+SQL>  insert into course values(104,'ds',4,2);
+
+1 row created.
+
+SQL>  insert into course values(105,'fm',4,3);
+
+1 row created.
+
+SQL>  insert into course values(106,'fd',3,3);
+
+1 row created.
+
+SQL>  insert into course values(107,'a&p',3,4);
+Enter value for p: .
+old   1:  insert into course values(107,'a&p',3,4)
+new   1:  insert into course values(107,'a.',3,4)
+
+1 row created.
+
+SQL> delete from course where id=107;
+
+1 row deleted.
+
+SQL>  insert into course values(107,'anp',3,4);
+
+1 row created.
+
+SQL>  insert into course values(108,'mos',4,4);
+
+1 row created.
+
+SQL>  insert into course values(109,'mc',4,5);
+
+1 row created.
+
+SQL>  insert into course values(110,'dsp',4,5);
+
+1 row created.
+
+SQL>  insert into course values(111,'pc',4,6);
+
+1 row created.
+
+SQL>  insert into course values(112,'oc',4,6);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from student;
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1231 yash
+shrivastava                                        01-NOV-92 male
+9234567890           pankaj
+9292929292           230,9th block,mit    yash@gmail.com
+
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1232 dheeraj
+ch                                                 23-DEC-92 male
+9234877890           srinivas
+9297629292           207,emerald,manipal  dheer@gmail.com
+
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1233 sai
+kiran                                              23-MAR-92 male
+8296539678           sanjay
+9000200666           211,14th block,mit   sk@gmail.com
+
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1234 jay
+mahajan                                            02-MAR-94 male
+829612678            anil
+9366006626           111,13th block,mit   jm@gmail.com
+
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1235 kaustubh
+garg                                               12-JAN-94 male
+929614448            ritul
+886006626            450,9th block,mit    kg@gmail.com
+
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1236 amandeep
+saluja                                             01-JAN-94 male
+999624448            lasanya
+996006626            452,9th block,mit    as@gmail.com
+
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1237 shubhi
+rayar                                              22-MAR-94 female
+988624448            popi
+993306626            444,4th block,mit    sr@gmail.com
+
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1238 varnika
+singh                                              02-NOV-94 female
+988624488            karan
+933066200            422,4th block,mit    vs@gmail.com
+
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1239 avni
+kumar                                              02-JAN-95 female
+98161188             karanjeet
+933011200            222,3th block,mit    ak@gmail.com
+
+
+        ID FNAME
+---------- --------------------------------------------------
+LNAME                                              DOB       SEX
+-------------------------------------------------- --------- ----------
+CONTACT_NO           FATHER_NAME
+-------------------- --------------------------------------------------
+PARENT_CONTACT       ADDRESS              EMAIL
+-------------------- -------------------- -------------------------
+      1240 jason
+statthom                                           02-APR-91 male
+81611828             matt
+993211200            222,11th block,mit   js@gmail.com
+
+
+10 rows selected.
+
+SQL> insert into enroll values(1231,101,82,11,13,17,37);
+
+1 row created.
+
+SQL> insert into enroll values(1231,103,95,4,15,14,28);
+
+1 row created.
+
+SQL> insert into enroll values(1232,105,97,15,15,19,42);
+
+1 row created.
+
+SQL> insert into enroll values(1232,106,82,11,11,17,40);
+
+1 row created.
+
+SQL> insert into enroll values(1233,102,86,10,10,15,35);
+
+1 row created.
+
+SQL> insert into enroll values(1233,104,80,11,7,13,37);
+
+1 row created.
+
+SQL> insert into enroll values(1234,101,76,15,6,19,40);
+
+1 row created.
+
+SQL> insert into enroll values(1234,108,87,14,11,18,43);
+
+1 row created.
+
+SQL> insert into enroll values(1235,111,79,13,10,18,47);
+
+1 row created.
+
+SQL> insert into enroll values(1235,112,77,11,9,20,37);
+
+1 row created.
+
+SQL> insert into enroll values(1236,107,75,12,7,20,40);
+
+1 row created.
+
+SQL> insert into enroll values(1236,109,100,14,9,17,43);
+
+1 row created.
+
+SQL> insert into enroll values(1237,110,89,13,10,16,45);
+
+1 row created.
+
+SQL> insert into enroll values(1237,105,95,8,6,14,49);
+
+1 row created.
+
+SQL> insert into enroll values(1238,106,88,10,8,12,39);
+
+1 row created.
+
+SQL> insert into enroll values(1238,107,86,12,9,16,37);
+
+1 row created.
+
+SQL> insert into enroll values(1239,103,80,12,10,19,38);
+
+1 row created.
+
+SQL> insert into enroll values(1239,105,88,15,7,19,50);
+
+1 row created.
+
+SQL> insert into enroll values(1240,107,88,15,7,11,50);
+
+1 row created.
+
+SQL> insert into enroll values(1240,110,88,15,8,16,35);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into teaches values(111,101);
+
+1 row created.
+
+SQL> insert into teaches values(112,109);
+
+1 row created.
+
+SQL> insert into teaches values(113,108);
+
+1 row created.
+
+SQL> insert into teaches values(114,107);
+
+1 row created.
+
+SQL> insert into teaches values(114,106);
+
+1 row created.
+
+SQL> insert into teaches values(115,105);
+
+1 row created.
+
+SQL> insert into teaches values(115,104);
+
+1 row created.
+
+SQL> insert into teaches values(116,110);
+
+1 row created.
+
+SQL> insert into teaches values(117,111);
+
+1 row created.
+
+SQL> insert into teaches values(118,112);
+
+1 row created.
+
+SQL> insert into teaches values(119,103);
+
+1 row created.
+
+SQL> insert into teaches values(120,102);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into achievements values(1231,1001,'CGPA greater than 9.5');
+insert into achievements values(1231,1001,'CGPA greater than 9.5')
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> insert into achivements values(1231,1001,'CGPA greater than 9.5');
+insert into achivements values(1231,1001,'CGPA greater than 9.5')
+                                         *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."ACHIVEMENTS"."NAME" (actual:
+21, maximum: 20)
+
+
+SQL> insert into achivements values(1231,1001,'CGPA > 9.5');
+
+1 row created.
+
+SQL> insert into achivements values(1231,1002,'DEPARTMENT TOPPER');
+
+1 row created.
+
+SQL> insert into achivements values(1237,1003,'HACKATHON WINNER');
+
+1 row created.
+
+SQL> insert into achivements values(1233,1004,'CGPA > 9.5');
+
+1 row created.
+
+SQL> delete from achivements where st_id=1233;
+
+1 row deleted.
+
+SQL> insert into achivements values(1233,1001,'CGPA > 9.5');
+insert into achivements values(1233,1001,'CGPA > 9.5')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C007027) violated
+
+
+SQL> insert into achivements values(1233,1004,'RUNNER UP OF ROBOWARS');
+insert into achivements values(1233,1004,'RUNNER UP OF ROBOWARS')
+                                         *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."ACHIVEMENTS"."NAME" (actual:
+21, maximum: 20)
+
+
+SQL> insert into achivements values(1233,1004,' ROBOWARS RUNNER UP');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> alter table notification drop column name;
+
+Table altered.
+
+SQL> alter table notification add name varchar(50);
+
+Table altered.
+
+SQL> insert into notification values(301,'SP IS NOW OPEN!!!!',12-AUG-2018);
+insert into notification values(301,'SP IS NOW OPEN!!!!',12-AUG-2018)
+                                                            *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into notification values(301,12-AUG-2018.'SP IS NOW OPEN!!!!!!!!');
+insert into notification values(301,12-AUG-2018.'SP IS NOW OPEN!!!!!!!!')
+                                                *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into notification values(301,12-AUG-2018,'SP IS NOW OPEN!!!!!!!!');
+insert into notification values(301,12-AUG-2018,'SP IS NOW OPEN!!!!!!!!')
+                                       *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into notification values(301,'12-AUG-2018','SP IS NOW OPEN!!!!!!!!');
+
+1 row created.
+
+SQL> insert into notification values(302,'21-OCT-2018','REGISTER FOR RETEST BY 27TH OCTOBER');
+
+1 row created.
+
+SQL> insert into notification values(303,'29-OCT-2018','FILL THE FEEDBACK BY 31ST OCTOBER');
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+
+SQL> alter table student add password varchar(20);
+
+Table altered.
+
+SQL> update student set password='Yash1234' where id=1231;
+
+1 row updated.
+
+SQL> update student set password='Dheeraj1234' where id=1232;
+
+1 row updated.
+
+SQL> update student set password='Kiran1234' where id=1233;
+
+1 row updated.
+
+SQL> update student set password='Jay1234' where id=1234;
+
+1 row updated.
+
+SQL> update student set password='Kaustubh1234' where id=1235;
+
+1 row updated.
+
+SQL> update student set password='Aman1234' where id=1236;
+
+1 row updated.
+
+SQL> update student set password='Shubhi1234' where id=1237;
+
+1 row updated.
+
+SQL> update student set password='Varnika1234' where id=1238;
+
+1 row updated.
+
+SQL> update student set password='Avni1234' where id=1239;
+
+1 row updated.
+
+SQL> update student set password='Jason1234' where id=1240;
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> alter table faculty add password varchar(20);
+
+Table altered.
+
+SQL> update student set password='robert1234' where id=111;
+
+0 rows updated.
+
+set serveroutput on;
+create or replace procedure tot_marks(s_id in int)
+as 
+t_marks int;
+begin
+select (s1marks+s2marks+imarks+emarks) into t_marks from enroll where st_id=s_id;
+dbms_output.put_line('total marks= '||t_marks); 
+end;
+/
+
+
+
+ create table Male(id int ,Primary key(id));
+ create table female(id int ,Primary key(id));
+
+create or replace trigger t1 after insert on student
+for each row
+declare
+begin
+if(:new.sex='male') then
+insert into Male values(:new.id);
+else
+insert into Female values(:new.id);
+end if;
+end;
+/
+
+
+alter table Male add fname varchar(20);
+alter table Male add lname varchar(20);
+alter table female add lname varchar(20);
+alter table female add fname varchar(20);
+
+create or replace trigger t2 after insert on student
+for each row
+declare cursor c1 is select fname from student where id=:new.id;
+n varchar(20);
+begin
+open c1;
+<<A>>
+loop
+fetch c1 into n;
+
+if(:new.sex='Male') then
+insert into Male values(:new.id,n);
+else
+insert into Female values(:new.id,n);
+end if;
+end loop A;
+close c1;
+
+end;
+/
+
+create or replace trigger t2 after insert on student
+for each row
+declare cursor c1 is select fname,lname from student where id=:new.id;
+v_name c1%rowtype;
+begin
+Open c1;
+<<A>>
+LOOP
+fetch c1 into v_name;
+exit when c1%notfound; 
+END LOOP A;
+Close c1;
+end;
+/
+
+ create or replace trigger t2 after insert on student
+   for each row
+    declare cursor c1 is select fname from student where id=:new.id;
+    n varchar(20);
+    begin
+    open c1;
+   loop
+    fetch c1 into n;
+   if(:new.sex='Male') then
+   insert into Male values(:new.id,n);
+ 13  else
+ 14  insert into Female values(:new.id,n);
+ 15  end if;
+ 16  end loop A;
+ 17  close c1;
+ 18
+ 19  end;
+ 20  /
+
+
+
+create or replace trigger t2 after insert on student
+for each row
+declare cursor c1 is select fname,lname from student where id=:new.id;
+begin
+open c1;
+if(:new.sex='male') then
+insert into Male values(:new.id,c1.fname,c1.lname);
+else
+insert into Female values(:new.id,c1.fname,c1.lname);
+close c1;
+end if;
+end;
+/
+
+ create or replace trigger t2 after insert on student
+    for each row
+    declare cursor c1 is select fname from student where id=:new.id;
+    v_name student.fname%type;
+    begin
+    open c1;
+    fetch c1 into v_name;
+	exit when c1%notfound;
+    if(:new.sex='male') then
+    insert into Male values(:new.id,v_name.fname,v_name.lname);
+   else
+   insert into Female values(:new.id,v_name.fname,v_name.lname);
+   close c1;
+   end if;
+   end;
+/
+
+
+
+
+create or replace trigger t2 after insert on student
+    for each row
+    declare cursor c1 is select fname from student where id=:new.id;
+    n varchar(20);
+    begin
+    open c1;
+    loop
+   fetch c1 into n;
+  if(:new.sex='Male') then
+   insert into Male values(:new.id,n);
+   else
+   insert into Female values(:new.id,n);
+   end if;
+   end loop A;
+   close c1;
+  end;
+   /
+
+create or replace trigger t3 after insert on enroll
+for each row
+declare 
+cursor c1 is select fname from student where id=:new.st_id;
+n varchar(20);
+begin
+open c1;
+loop
+fetch c1 into n;
+exit when c1%NOTFOUND;
+if(:new.sex='Male') then
+insert into Male values(:new.st_id,n);
+else
+insert into Female values(:new.st_id,n);
+end if;
+end loop;
+close c1;
+end;
+/
+ insert into student values(919,'amandeep','saluja','1-jan-1994','male','999624448','lasanya','996006626','452,9th block,mit','as@gmail.com');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create or replace trigger t4 after insert on Achivements
+for each row
+begin
+p1;
+end;
+/
+
+
+create or replace procedure p1
+as
+cursor c is 
+select st_id ,emarks from enroll where emarks >45;
+
+begin
+
+for i in c 
+loop
+insert into r1 values (i.st_id,i.emarks);
+end loop;
+end;
+/
+
